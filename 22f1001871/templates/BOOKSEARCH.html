@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DASHBOARD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid" style="color: #e3f2fd;">
+    </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/home">HOME</a>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">LOGOUT</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div>
+    SEARCH BASED ON BOOKNAME
+    {% for books in books %}
+    <ol>
+      <br>
+      <li>
+      BOOK NAME : {{books.bname}}
+      </li>
+      <li>
+      BOOK AUTHORS : {{books.bauthours}}</li>
+      <li>
+      BOOK RATING : {{books.rating}}</li>
+      <li>
+      CLICK HERE TO GIVE RATING : <button><a href="/rating/{{books.bid}}">RATING</a></button>
+      </li><li>
+      {% if books.user_issued==0 %}
+      CLICK HERE TO REQUEST BOOK :<button><a href="/days/{{books.bid}}">REQUEST</a></button>
+      {% else %}
+        {% if books.bookissueddate==None %}
+        THIS BOOK IS ALREADY REQUESTED
+        {% else %}
+        THIS BOOK IS ISSUED TO {{books.user_issued}}
+        <li>
+        BOOK RETURN DATE : {{books.bookreturndate}}
+        </li>
+        {% endif %}
+      {% endif %}
+      </li>
+      <li>
+      BOOK PRICE : {{books.bookprice}}
+      </li>
+      <li>
+      CLICK HERE TO BUY BOOK : <button><a href="/buy/{{books.bid}}">BUY</a></button></li>
+      {% endfor %}
+    </ol>
+    <br>
+    SEARCH BASED ON AUTHORS
+    {% for books in authors %}
+    <ol>
+      <br>
+      <li>
+      BOOK NAME : {{books.bname}}
+      </li>
+      <li>
+      BOOK AUTHORS : {{books.bauthours}}</li>
+      <li>
+      BOOK RATING : {{books.rating}}</li>
+      <li>
+      CLICK HERE TO GIVE RATING : <button><a href="/rating/{{books.bid}}">RATING</a></button>
+      </li><li>
+      {% if books.user_issued==0 %}
+      CLICK HERE TO REQUEST BOOK :<button><a href="/days/{{books.bid}}">REQUEST</a></button>
+      {% else %}
+        {% if books.bookissueddate==None %}
+        THIS BOOK IS ALREADY REQUESTED
+        {% else %}
+        THIS BOOK IS ISSUED TO {{books.user_issued}}
+        <li>
+        BOOK RETURN DATE : {{books.bookreturndate}}
+        </li>
+        {% endif %}
+      {% endif %}
+      </li>
+      <li>
+      BOOK PRICE : {{books.bookprice}}
+      </li>
+      <li>
+      CLICK HERE TO BUY BOOK : <button><a href="/buy/{{books.bid}}">BUY</a></button></li>
+      {% endfor %}
+    </ol>
+  </div>
+</body>
+</html>
